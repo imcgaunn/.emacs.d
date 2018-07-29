@@ -51,6 +51,12 @@
 (setq ivy-use-virtual-buffers t)
 (setq enable-recursive-minibuffers t)
 
+;; appearance
+(set-background-color "honeydew")
+(set-frame-font "-*-Menlo-normal-normal-normal-*-18-*-*-*-m-0-iso10646-1")
+(setq scroll-bar-mode nil)
+(setq tool-bar-mode nil)
+
 ;; project settings
 (projectile-mode 1)
 (setq projectile-project-search-path '("~/go/src/" "~/Development/"))
@@ -60,8 +66,18 @@
 (global-set-key (kbd "C-S-s") 'isearch-forward-regexp)
 (setq visible-bell t)
 
-;; go specific keybindings
+;; go specific keybindings / settings.
 (defun go-mode-config ()
   "use with go-mode-hook"
   (local-set-key (kbd "C-c C-c") 'shell))
 (add-hook 'go-mode-hook 'go-mode-config)
+
+;; elisp specific keybindings /settings
+(defun elisp-mode-config ()
+  (local-set-key (kbd "C-c C-r" 'eval-region)))
+(add-hook 'elisp-mode-hook 'elisp-mode-config)
+
+(add-to-list 'default-frame-alist
+	     '(font . "-*-Menlo-normal-normal-normal-*-18-*-*-*-m-0-iso10646-1"))
+(add-to-list 'default-frame-alist
+	     '(background-color . "honeydew")) ;; this background-color setting doesn't work, and I'm not sure why :(
